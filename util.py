@@ -59,12 +59,13 @@ def search_csv(search_criteria):
         csvreader = csv.reader(file, delimiter=',')
         rows = list(csvreader)
         for row in rows:
-            if search_criteria in row:
+            if str(search_criteria) in row:
                 display_search_results(row)
             else:
-                input("Your search did not yield any results. "
-                      "Please press Enter to return to the main menu")
+                return input("Your search did not yield any results."
+                             " Please press Enter to return to the main menu")
                 clear()
+
 
 
 def reg_csv_search(arg):
@@ -78,8 +79,8 @@ def reg_csv_search(arg):
             if re.search(arg, str(row)):
                 display_search_results(row)
             else:
-                input('Your search did not yield any results. Please press '
-                      'Enter to return to the main menu')
+                return input('Your search did not yield any results. Please '
+                             'press Enter to return to the main menu')
                 clear()
 
 

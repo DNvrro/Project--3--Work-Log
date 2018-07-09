@@ -39,17 +39,17 @@ class Worklog:
         """Writes user input to a csv"""
         entry_date = date_format(input("Date of the task"
                                        "\nPlease use the "
-                                       "DD/MM/YYYY:\n> ")).strip()
+                                       "MM/DD/YYYY:\n> ")).strip()
         clear()
 
-        entry_title = input("Title of the task:\n> ").strip().upper()
+        entry_title = input("Title of the task:\n> ").strip()
         clear()
 
         entry_time_spent = time_format(input("Time spent "
                                              "(rounded in minutes):\n> "))
         clear()
 
-        entry_notes = input("Notes (Optional):\n> ").strip().upper()
+        entry_notes = input("Notes (Optional):\n> ").strip()
         clear()
 
         with open('work_log.csv', 'a') as file:
@@ -109,7 +109,7 @@ class Worklog:
         """
         exactly = input('What is the exact task you are looking for? \n>')
 
-        search_csv(exactly.upper())
+        search_exact(exactly)
 
     def search_regex(self):
         """This function takes the user's inputted regex pattern and passes
