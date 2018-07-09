@@ -109,7 +109,7 @@ class Worklog:
         """
         exactly = input('What is the exact task you are looking for? \n>')
 
-        search_exact(exactly)
+        search_csv(exactly)
 
     def search_regex(self):
         """This function takes the user's inputted regex pattern and passes
