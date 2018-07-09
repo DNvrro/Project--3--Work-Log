@@ -59,7 +59,7 @@ def search_csv(search_criteria):
         csvreader = csv.reader(file, delimiter=',')
         rows = list(csvreader)
         for row in rows:
-            if str(search_criteria) in row:
+            if search_criteria in row:
                 display_search_results(row)
             else:
                 return input("Your search did not yield any results."
