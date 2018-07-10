@@ -107,7 +107,7 @@ class Worklog:
         """This function takes the user's argument and passes it to the
         search_csv function which then displays it to the user
         """
-        exactly = input('What is the exact task you are looking for? \n>')
+        exactly = input('What exactly are you looking for? \n>')
 
         search_csv(exactly)
 
