@@ -61,9 +61,8 @@ def search_csv(search_criteria):
         for row in rows:
             if search_criteria in row:
                 display_search_results(row)
-            else:
-                return input("Please press Enter to return to the main menu")
-                clear()
+        return input("Please press Enter to return to the main menu")
+        clear()
 
 
 
