@@ -28,10 +28,9 @@ def date_format(date):
             clear()
             task_date = input(
                 "Sorry. That is not a valid date. Please enter a date"
-                "in the specified format: \n>")
+                "in the MM/DD/YYYY format: \n>")
 
     return task_date
-
 
 
 def time_format(time):
@@ -63,7 +62,6 @@ def search_csv(search_criteria):
                 display_search_results(row)
         return input("Please press Enter to return to the main menu")
         clear()
-
 
 
 def reg_csv_search(arg):
