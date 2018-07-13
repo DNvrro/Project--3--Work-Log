@@ -55,47 +55,44 @@ def search_csv(search_criteria):
     display_search_results function once it is found
     """
     results_list = []
-    with open('work_log.csv') as file:
+    with open('work_log.csv', 'r') as file:
         for row in file:
             if search_criteria in row:
                 results_list.append(row)
         results_sort(results_list)
-        #return input('press Enter to return to the main menu')
-       # clear()
 
 
 def reg_csv_search(arg):
     """Uses a regex pattern to search the CSV for the users specified
     criteria
     """
+    results_list = []
     with open('work_log.csv', 'r') as file:
-        csvreader = csv.reader(file, delimiter=',')
-        rows = list(csvreader)
-        for row in rows:
+        for row in file:
             if re.search(arg, str(row)):
-                display_search_results(row)
-            else:
-                return input('Your search did not yield any results. Please '
-                             'press Enter to return to the main menu')
-                clear()
+                results_list.append(row)
+        results_sort(results_list)
 
 
 def results_sort(search_results):
-
     if len(search_results) >= 1:
         display_search_results(search_results[0])
         proceed(search_results)
     else:
-        print('Sorry. Nothing matched your search.')
+        input('Sorry. Nothing matched your search. Press Enter '
+              'to return to the main menu')
+
 
 def proceed(results_sort):
-    """Asks the user if they would like to proceed to the next search match"""
+    """Asks the user if they would like to proceed to the next search
+    match or return to the main menu
+    """
     result_index = 0
     good = True
     with open('work_log.csv', 'r') as file:
         while good:
             proceed_prompt = input('Would you like to see the next '
-                               'match (Y/N)? \n>').upper()
+                                   'match (Y/N)? \n>').upper()
             if proceed_prompt == 'Y':
                 result_index += 1
                 try:
@@ -110,7 +107,6 @@ def proceed(results_sort):
                 clear()
 
 
-
 def display_search_results(results):
     """Displays the users desired criteria in a user friendly format"""
 
@@ -120,6 +116,4 @@ def display_search_results(results):
     print('Title : {}'.format(new_list[1]))
     print('Time Spent : {}'.format(new_list[2]))
     print('Notes : {}'.format(new_list[3]))
-    #input("Press Enter to cycle through entries.")
-
     clear()
