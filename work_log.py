@@ -92,7 +92,7 @@ class Worklog:
         search_csv function which then displays it to the user
         """
         desired_date = date_format(input('Please enter a date in the '
-                                         'MM/DD/YYYY format \n>'))
+                                         'MM/DD/YYYY format: \n>'))
         search_csv(desired_date)
 
     def search_time_spent(self):

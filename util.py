@@ -60,8 +60,10 @@ def search_csv(search_criteria):
         for row in rows:
             if search_criteria in row:
                 display_search_results(row)
-        return input("Please press Enter to return to the main menu")
-        clear()
+        else:
+            input("Sorry, your search didn't yield any results. Perhaps "
+                  "try searching for something else.")
+            clear()
 
 
 def reg_csv_search(arg):
@@ -87,6 +89,5 @@ def display_search_results(results):
     print('Title : {}'.format(results[1]))
     print('Time Spent : {}'.format(results[2]))
     print('Notes : {}'.format(results[3]))
-    input("Press Enter to cycle through entries or "
-          "return to the main menu\n")
+    input("Press Enter to cycle through entries or return to the main menu.")
     clear()
