@@ -54,16 +54,14 @@ def search_csv(search_criteria):
     """Searches the CSV for the user provided criteria, then calls the
     display_search_results function once it is found
     """
-    with open('work_log.csv', 'r') as file:
-        csvreader = csv.reader(file, delimiter=',')
-        rows = list(csvreader)
-        for row in rows:
+    results_list = []
+    with open('work_log.csv') as file:
+        for row in file:
             if search_criteria in row:
-                display_search_results(row)
-        else:
-            input("Sorry, your search didn't yield any results. Perhaps "
-                  "try searching for something else.")
-            clear()
+                results_list.append(row)
+        results_sort(results_list)
+        #return input('press Enter to return to the main menu')
+       # clear()
 
 
 def reg_csv_search(arg):
@@ -82,12 +80,46 @@ def reg_csv_search(arg):
                 clear()
 
 
+def results_sort(search_results):
+
+    if len(search_results) >= 1:
+        display_search_results(search_results[0])
+        proceed(search_results)
+    else:
+        print('Sorry. Nothing matched your search.')
+
+def proceed(results_sort):
+    """Asks the user if they would like to proceed to the next search match"""
+    result_index = 0
+    good = True
+    with open('work_log.csv', 'r') as file:
+        while good:
+            proceed_prompt = input('Would you like to see the next '
+                               'match (Y/N)? \n>').upper()
+            if proceed_prompt == 'Y':
+                result_index += 1
+                try:
+                    display_search_results(results_sort[result_index])
+                except IndexError:
+                    print('There are no other entries that match your '
+                          'search criteria.')
+                    clear()
+                    good = False
+            elif proceed_prompt == 'N':
+                good = False
+                clear()
+
+
+
 def display_search_results(results):
     """Displays the users desired criteria in a user friendly format"""
 
-    print('Date : {}'.format(results[0]))
-    print('Title : {}'.format(results[1]))
-    print('Time Spent : {}'.format(results[2]))
-    print('Notes : {}'.format(results[3]))
-    input("Press Enter to cycle through entries or return to the main menu.")
+    new_list = results.split(',')
+
+    print('Date : {}'.format(new_list[0]))
+    print('Title : {}'.format(new_list[1]))
+    print('Time Spent : {}'.format(new_list[2]))
+    print('Notes : {}'.format(new_list[3]))
+    #input("Press Enter to cycle through entries.")
+
     clear()
