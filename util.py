@@ -27,7 +27,7 @@ def date_format(date):
         except ValueError:
             clear()
             task_date = input(
-                "Sorry. That is not a valid date. Please enter a date"
+                "Sorry. That is not a valid date. Please enter a date "
                 "in the MM/DD/YYYY format: \n>")
 
     return task_date
