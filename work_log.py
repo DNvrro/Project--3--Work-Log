@@ -100,8 +100,8 @@ class Worklog:
         search_csv function which then displays it to the user
         """
         spent_time = time_format(input('How much time did you spend on'
-                                       ' this job task? \n>'))
-        search_csv(spent_time)
+                                       ' this job task? \n>')).strip()
+        search_time(spent_time)
 
     def exact_search(self):
         """This function takes the user's argument and passes it to the

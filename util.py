@@ -62,6 +62,25 @@ def search_csv(search_criteria):
         results_sort(results_list)
 
 
+def search_time(time_spent):
+    """Searches the csv file for the time spent on the task"""
+    results_list = []
+    with open('work_log.csv', 'r') as file:
+        for row in file:
+            if time_spent in row:
+                results_list.append(row)
+        time_sort(time_spent, results_list)
+
+
+def time_sort(time_spent, time_results):
+    if len(time_results) >= 1:
+        display_time(time_spent, time_results[0])
+        proceed_time(time_spent, time_results)
+    else:
+        input(' Sorry. Nothing matched your search. Press Enter '
+              'to return to the main menu')
+
+
 def reg_csv_search(arg):
     """Uses a regex pattern to search the CSV for the users specified
     criteria
@@ -107,6 +126,30 @@ def proceed(results_sort):
                 clear()
 
 
+def proceed_time(time_spent, results_sort):
+    """Asks the user if they would like to proceed to the next search
+    match or return to the main menu
+    """
+    result_index = 0
+    good = True
+    with open('work_log.csv', 'r') as file:
+        while good:
+            proceed_prompt = input('Would you like to see the next '
+                                   'match (Y/N)? \n>').upper()
+            if proceed_prompt == 'Y':
+                result_index += 1
+                try:
+                    display_time(time_spent, results_sort[result_index])
+                except IndexError:
+                    print('There are no other entries that match your '
+                          'search criteria.')
+                    clear()
+                    good = False
+            elif proceed_prompt == 'N':
+                good = False
+                clear()
+
+
 def display_search_results(results):
     """Displays the users desired criteria in a user friendly format"""
 
@@ -117,3 +160,18 @@ def display_search_results(results):
     print('Time Spent : {}'.format(new_list[2]))
     print('Notes : {}'.format(new_list[3]))
     clear()
+
+def display_time(time_spent, results):
+    """Displays the time criteria in a user friendly format"""
+
+    time_list = results.split(',')
+
+    if time_list[2] == time_spent:
+        print('Date : {}'.format(time_list[0]))
+        print('Title : {}'.format(time_list[1]))
+        print('Time Spent : {}'.format(time_list[2]))
+        print('Notes : {}'.format(time_list[3]))
+        clear()
+
+
+
